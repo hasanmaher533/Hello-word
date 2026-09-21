@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+  pre_build:
+    commands:
+      - echo "We are in the pre_build phase"
+  build:
+    commands:
+      - echo "We are in the build phase"
+      - echo "Running simple tests..."
+      # نتأكد أن ملف app.js يحتوي على كلمة CodePipeline
+      - grep -Fq "CodePipeline" app.js
+  post_build:
+    commands:
+      - echo "We are in the post_build phase"
+      - echo "Test completed successfully!"
